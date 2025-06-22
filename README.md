@@ -31,11 +31,10 @@ sudo apt install git
 
 1.  Clone this repository:
 
-    (Replace YOUR_GITHUB_USERNAME with your actual GitHub username)
 
 ```
 cd ~
-git clone https://github.com/YOUR_GITHUB_USERNAME/TC2-BBS-Modules.git
+git clone https://github.com/DicksterTheDick/TC2-BBS-Modules.git
 cd TC2-BBS-Modules
 
 ```
