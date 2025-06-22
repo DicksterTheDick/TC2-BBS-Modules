@@ -1,103 +1,126 @@
-================================================================================
 TC2-BBS-Modules: Extended Meshtastic BBS
-================================================================================
+========================================
 
-This repository presents extended modules and features built upon the robust 
-TC2-BBS-mesh project. It serves as a template and development hub for new 
-functionalities, designed to enhance the capabilities and user experience of the 
-Meshtastic-based Bulletin Board System.
+This repository presents **extended modules and features built upon the robust** [**TC2-BBS-mesh**](https://github.com/TheCommsChannel/TC2-BBS-mesh "null") **project**. It serves as a template and development hub for new functionalities, designed to enhance the capabilities and user experience of the Meshtastic-based Bulletin Board System.
 
-================================================================================
-Docker
-================================================================================
+### Docker
 
-The original TC²-BBS Meshtastic is available on Docker Hub! (This extended 
-version would require a new Docker build and image, if desired).
+The original TC²-BBS Meshtastic is available on Docker Hub! (This extended version would require a new Docker build and image, if desired).
 
-================================================================================
 Setup
-================================================================================
+-----
 
-Requirements:
-- Python 3.x
-- Meshtastic
-- pypubsub
+### Requirements
 
-Update and Install Git:
+-   Python 3.x
+
+-   Meshtastic
+
+-   pypubsub
+
+### Update and Install Git
+
+```
 sudo apt update
 sudo apt upgrade
 sudo apt install git
 
-Installation:
-1. Clone this repository:
-   
-   cd ~
-   git clone https://github.com/DicksterTheDick/TC2-BBS-Modules.git
-   cd TC2-BBS-Modules
+```
 
-2. Set up a Python virtual environment:
-   python -m venv venv
+### Installation
 
-3. Activate the virtual environment:
-   - On Windows: venv\Scripts\activate
-   - On macOS and Linux: source venv/bin/activate
+1.  Clone this repository:
 
-4. Install the required packages:
-   pip install -r requirements.txt
+    (Replace YOUR_GITHUB_USERNAME with your actual GitHub username)
 
-5. Rename example_config.ini:
-   mv example_config.ini config.ini
+```
+cd ~
+git clone https://github.com/YOUR_GITHUB_USERNAME/TC2-BBS-Modules.git
+cd TC2-BBS-Modules
 
-6. Set up the configuration in config.ini:
-   Open config.ini in a text editor and make your changes following the 
-   instructions below. This project's config.ini includes new menu items for Games.
+```
 
-================================================================================
-Configuration Details
-================================================================================
+1.  Set up a Python virtual environment: ```sh
 
-[interface]
-If using type = serial and you have multiple devices connected, you will need to 
-uncomment the port = line and enter the port of your device.
+    python -m venv venv
 
-Linux Example:
-port = /dev/ttyUSB0
+```
 
-Windows Example:
-port = COM3
+3\.  **Activate the virtual environment:** - On Windows:
 
-If using type = tcp you will need to uncomment the hostname = 192.168.x.x line 
-and put in the IP address of your Meshtastic device.
+```sh
+venv\Scripts\activate
 
-[sync]
-Enter a list of other BBS nodes you would like to sync messages and bulletins 
-with. Separate each by comma and no spaces as shown in the example below.
+```
 
-You can find the nodeID in the menu under Radio Configuration > User for each 
-node, or use this script for getting nodedb data from a device:
-Meshtastic-Python-Examples/print-nodedb.py at main · pdxlocations/Meshtastic-Python-Examples
+-   On macOS and Linux:
 
-Example Config:
-[interface]
-type = serial
-# port = /dev/ttyUSB0
-# hostname = 192.168.x.x
+```
+source venv/bin/activate
 
-[sync]
-bbs_nodes = !f53f4abc,!f3abc123
+```
 
-================================================================================
-Running the Server
-================================================================================
+1.  Install the required packages: ```sh
+
+    pip install -r requirements.txt
+
+```
+
+5\.  **Rename `example_config.ini`:**
+
+```sh
+mv example_config.ini config.ini
+
+```
+
+1.  **Set up the configuration in `config.ini`:** You'll need to open up the `config.ini` file in a text editor and make your changes following the instructions below. This project's `config.ini` includes new menu items for Games.
+
+    **[interface]** If using `type = serial` and you have multiple devices connected, you will need to uncomment the `port =` line and enter the port of your device.
+
+    Linux Example:
+
+    `port = /dev/ttyUSB0`
+
+    Windows Example:
+
+    `port = COM3`
+
+    If using `type = tcp` you will need to uncomment the `hostname = 192.168.x.x` line and put in the IP address of your Meshtastic device.
+
+    **[sync]** Enter a list of other BBS nodes you would like to sync messages and bulletins with. Separate each by comma and no spaces as shown in the example below.
+
+    You can find the nodeID in the menu under `Radio Configuration > User` for each node, or use this script for getting nodedb data from a device:
+
+    [Meshtastic-Python-Examples/print-nodedb.py at main - pdxlocations/Meshtastic-Python-Examples (github.com)](https://github.com/pdxlocations/Meshtastic-Python-Examples/blob/main/print-nodedb.py "null")
+
+    Example Config:
+
+    ```
+    [interface]
+    type = serial
+    # port = /dev/ttyUSB0
+    # hostname = 192.168.x.x
+
+    [sync]
+    bbs_nodes = !f53f4abc,!f3abc123
+
+    ```
+
+### Running the Server
 
 Run the server with:
+
+```
 python server.py
 
-Be sure you've followed the Python virtual environment steps above and activated 
-it before running. This server also features a configurable logging system in 
-server.py for in-depth debugging and monitoring.
+```
 
-Command line arguments:
+Be sure you've followed the Python virtual environment steps above and activated it before running. This server also features a configurable logging system in `server.py` for in-depth debugging and monitoring.
+
+Command line arguments
+----------------------
+
+```
 $ python server.py --help
 
 ████████╗ ██████╗██████╗       ██████╗ ██████╗ ███████╗
@@ -110,6 +133,8 @@ Meshtastic Version
 
 usage: server.py [-h] [--config CONFIG] [--interface-type {serial,tcp}] [--port PORT] [--host HOST] [--mqtt-topic MQTT_TOPIC]
 
+Meshtastic BBS system
+
 options:
   -h, --help            show this help message and exit
   --config CONFIG, -c CONFIG
@@ -121,83 +146,140 @@ options:
   --mqtt-topic MQTT_TOPIC, -t MQTT_TOPIC
                         MQTT topic to subscribe
 
-================================================================================
+```
+
 Automatically run at boot
-================================================================================
+-------------------------
 
-1. Edit the service file:
-   Edit the mesh-bbs.service file using your preferred text editor. The 3 
-   following lines in that file are what we need to edit:
+If you would like to have the script automatically run at boot, follow the steps below:
 
-   User=pi
-   WorkingDirectory=/home/pi/TC2-BBS-Modules
-   ExecStart=/home/pi/TC2-BBS-Modules/venv/bin/python3 /home/pi/TC2-BBS-Modules/server.py
+1.  **Edit the service file**
 
-   Replace "pi" with your username in all 4 locations.
+    First, edit the `mesh-bbs.service` file using your preferred text editor. The 3 following lines in that file are what we need to edit:
 
-2. Configuring systemd:
-   From the TC2-BBS-Modules directory, run:
-   sudo cp mesh-bbs.service /etc/systemd/system/
-   sudo systemctl enable mesh-bbs.service
-   sudo systemctl start mesh-bbs.service
+    ```
+    User=pi
+    WorkingDirectory=/home/pi/TC2-BBS-Modules # MODIFIED: Reflects new folder name
+    ExecStart=/home/pi/TC2-BBS-Modules/venv/bin/python3 /home/pi/TC2-BBS-Modules/server.py # MODIFIED: Reflects new folder name
 
-3. Service management:
-   - Check status: sudo systemctl status mesh-bbs.service
-   - Stop service: sudo systemctl stop mesh-bbs.service
-   - Restart service: sudo systemctl restart mesh-bbs.service
+    ```
 
-4. Viewing Logs:
-   - Past logs: journalctl -u mesh-bbs.service
-   - Live logs: journalctl -u mesh-bbs.service -f
+    The file is currently setup for a user named 'pi' and assumes that the `TC2-BBS-Modules` directory is located in the home directory (which it should be if the earlier directions were followed).
 
-================================================================================
+    We just need to replace the 4 parts that have "pi" in those 3 lines with your username.
+
+2.  **Configuring systemd**
+
+    From the `TC2-BBS-Modules` directory, run the following commands:
+
+    ```
+    sudo cp mesh-bbs.service /etc/systemd/system/
+    ```sh
+    sudo systemctl enable mesh-bbs.service
+    ```sh
+    sudo systemctl start mesh-bbs.service
+
+    ```
+
+    The service should be started now and should start anytime your device is powered on or rebooted. You can check the status of the service by running the following command:
+
+    ```
+    sudo systemctl status mesh-bbs.service
+
+    ```
+
+    If you need to stop the service, you can run the following:
+
+    ```
+    sudo systemctl stop mesh-bbs.service
+
+    ```
+
+    If you need to restart the service, you can do so with the following command:
+
+    ```
+    sudo systemctl restart mesh-bbs.service
+
+    ```
+
+3.  **Viewing Logs**
+
+    Viewing past logs:
+
+    ```
+    journalctl -u mesh-bbs.service
+
+    ```
+
+    Viewing live logs:
+
+    ```
+    journalctl -u mesh-bbs.service -f
+
+    ```
+
 Radio Configuration
-================================================================================
+-------------------
 
-Note: There have been reports of issues with some device roles. The following 
-device roles have been working:
-- Client
-- Router_Client
+Note: There have been reports of issues with some device roles that may allow the BBS to communicate for a short time, but then the BBS will stop responding to requests.
 
-================================================================================
+The following device roles have been working:
+
+-   **Client**
+
+-   **Router_Client**
+
 Features (Extended)
-================================================================================
+-------------------
 
 This project extends the original TC2-BBS-mesh features with:
-- Games Menu: A new menu offering interactive games
-  - Blackjack Game: A text-based Blackjack game
-- Mail System: Send and receive mail messages
-- Bulletin Boards: Post and view bulletins
-- Channel Directory: Add and view channels
-- Statistics: View statistics about nodes
-- Wall of Shame: View devices with low battery
-- Fortune Teller: Get a random fortune (editable via fortunes.txt)
 
-================================================================================
+-   **Games Menu:** A new menu offering interactive games.
+
+    -   **Blackjack Game:** A text-based Blackjack game playable directly through Meshtastic.
+
+-   **Mail System**: Send and receive mail messages.
+
+-   **Bulletin Boards**: Post and view bulletins on various boards.
+
+-   **Channel Directory**: Add and view channels in the directory.
+
+-   **Statistics**: View statistics about nodes, hardware, and roles.
+
+-   **Wall of Shame**: View devices with low battery levels.
+
+-   **Fortune Teller**: Get a random fortune. Pulls from the fortunes.txt file. Feel free to edit this file remove or add more if you like.
+
 Usage
-================================================================================
+-----
 
-Interact with the BBS by sending direct messages to the node running the script.
-Send any message to get the main menu. Make selections by sending messages based 
-on the letter/number in brackets (e.g., send "M" for [M]ail Menu).
+You interact with the BBS by sending direct messages to the node that's connected to the system running the Python script. Sending any message to it will get a response with the main menu.
 
-================================================================================
-Credits
-================================================================================
+Make selections by sending messages based on the letter or number in brackets - Send M for [M]ail Menu for example.
 
-MAXIMUM CREDIT & Gratitude to The Comms Channel!
-This project builds upon their TC2-BBS-mesh repository.
+A video of the original TC2-BBS-mesh in use is available on The Comms Channel's YouTube:
 
-Meshtastic:
-Thanks to Meshtastic and pdxlocations for Python examples:
-python/examples at master · meshtastic/python
-pdxlocations/Meshtastic-Python-Examples
+**MAXIMUM CREDIT & Gratitude to The Comms Channel!**
+----------------------------------------------------
 
-JS8Call:
-Thanks to Jordan Sherer for JS8Call and example API Python script
+This project would not be possible without the foundational work of [**The Comms Channel**](https://www.youtube.com/@TheCommsChannel "null") and their fantastic [**TC2-BBS-mesh**](https://github.com/TheCommsChannel/TC2-BBS-mesh "null") repository. Their innovative approach to creating a BBS over Meshtastic has been the invaluable starting point and core framework for these extensions. We extend immense gratitude for their vision, development, and ongoing contributions to the Meshtastic community.
 
-================================================================================
+Thanks (Original Project Credits)
+---------------------------------
+
+**Meshtastic:**
+
+Big thanks to [Meshtastic](https://github.com/meshtastic "null") and [pdxlocations](https://github.com/pdxlocations "null") for the great Python examples:
+
+[python/examples at master - meshtastic/python (github.com)](https://github.com/meshtastic/python/tree/master/examples "null")
+
+[pdxlocations/Meshtastic-Python-Examples (github.com)](https://github.com/pdxlocations/Meshtastic-Python-Examples "null")
+
+**JS8Call:**
+
+For the JS8Call side of things, big thanks to Jordan Sherer for JS8Call and the [example API Python script](https://bitbucket.org/widefido/js8call/src/js8call/tcp.py "null")
+
 License
-================================================================================
+-------
 
-GNU General Public License v3.0 (GPL-3.0)
+This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**, in direct compliance with the licensing of the original TC2-BBS-mesh project. See the `LICENSE` file for full details.
