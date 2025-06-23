@@ -5,7 +5,7 @@ This repository presents **extended modules and features built upon the robust**
 
 ### Docker
 
-The original TC²-BBS Meshtastic is available on Docker Hub! (This extended version would require a new Docker build and image, if desired).
+The original TC²-BBS Meshtastic is available on Docker Hub! 
 
 Setup
 -----
