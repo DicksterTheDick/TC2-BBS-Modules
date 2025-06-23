@@ -39,7 +39,7 @@ cd TC2-BBS-Modules
 
 ```
 
-1.  Set up a Python virtual environment: ```sh
+1.  Set up a Python virtual environment: ```
 
     python -m venv venv
 
@@ -59,7 +59,7 @@ source venv/bin/activate
 
 ```
 
-1.  Install the required packages: ```sh
+1.  Install the required packages: ```
 
     pip install -r requirements.txt
 
