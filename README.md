@@ -45,9 +45,9 @@ cd TC2-BBS-Modules
 
 ```
 
-3\.  **Activate the virtual environment:** - On Windows:
+  **Activate the virtual environment:** - On Windows:
 
-```sh
+```
 venv\Scripts\activate
 
 ```
@@ -65,9 +65,9 @@ source venv/bin/activate
 
 ```
 
-5\.  **Rename `example_config.ini`:**
+  **Rename `example_config.ini`:**
 
-```sh
+```
 mv example_config.ini config.ini
 
 ```
@@ -173,9 +173,9 @@ If you would like to have the script automatically run at boot, follow the steps
 
     ```
     sudo cp mesh-bbs.service /etc/systemd/system/
-    ```sh
+    ```
     sudo systemctl enable mesh-bbs.service
-    ```sh
+    ```
     sudo systemctl start mesh-bbs.service
 
     ```
